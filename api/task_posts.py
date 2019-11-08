@@ -28,7 +28,6 @@ class PostTableTask(Resource):
             }
         return PostTableTask.get(self)
 
-
     def put(self):
         logger.debug("---Inside task_posts put()---")
         pass

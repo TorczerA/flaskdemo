@@ -1,4 +1,3 @@
-from marshmallow import Schema, fields
 from datetime import datetime
 from app import db
 
@@ -46,12 +45,6 @@ class UserTable(db.Model):
     def __repr__(self):
         return '<id {} : {} {}'.format(self.id, self.first_name, self.last_name)
 
-'''
-class UserSchema(Schema):
-    id = fields.Int(dump_only=True)
-    first_name = fields.Str(required=True)
-    last_name = fields.Str(required=True)
-'''
 
 class PostsTable(db.Model):
     __tablename__ = 'posts'
@@ -104,10 +97,3 @@ class PostsTable(db.Model):
 
     def __repr__(self):
         return '<id {} : {} {}'.format(self.id, self.title, self.body)
-
-'''
-class PostsSchema(Schema):
-    id = fields.Int(dump_only=True)
-    first_name = fields.Str(required=True)
-    last_name = fields.Str(required=True)
-'''
