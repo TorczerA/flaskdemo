@@ -12,6 +12,7 @@ db = SQLAlchemy(app=flaskAppInstance)
 from models import *
 
 if __name__ == "__main__":
-    logger.debug("---Starting the application---")
+    logger.debug("----------------------------------------------------------------------------Starting the application")
+    # noinspection PyUnresolvedReferences
     from api import *
     flaskAppInstance.run(host="0.0.0.0", port=5000, debug=True, use_reloader=True)
