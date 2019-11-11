@@ -22,6 +22,10 @@ class PostsTable(db.Model):
         return self.id
 
     @property
+    def get_user_id(self):
+        return self.user_id
+
+    @property
     def get_title(self):
         return self.title
 
@@ -37,18 +41,13 @@ class PostsTable(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def update(self, data):
-        for key, value in data.items():
-            setattr(self, key, value)
-        db.session.commit()
-
     def serialize(self):
         return {
             "id": self.get_id,
             "title": self.get_title,
             "body": self.get_body,
             "creation_datetime": self.get_creation_time.__str__(),
-            "user_id": self.user_id
+            "user_id": self.get_user_id
         }
 
     def delete_post(self):
@@ -58,14 +57,6 @@ class PostsTable(db.Model):
     @classmethod
     def get_all_posts(cls):
         return cls.query.all()
-
-    @classmethod
-    def get_post_by_user_id(cls, user_id):
-        return cls.query.get(user_id)
-
-    @classmethod
-    def get_by_id(cls, post_id):
-        return cls.query.get(post_id)
 
     def __repr__(self):
         return '<id {} : {} {}'.format(self.id, self.title, self.body)

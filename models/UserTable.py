@@ -29,14 +29,6 @@ class UserTable(db.Model):
         return self.id
 
     @property
-    def get_email(self):
-        return self.email
-
-    @property
-    def get_password(self):
-        return self.password
-
-    @property
     def get_first_name(self):
         return self.first_name
 
@@ -50,11 +42,6 @@ class UserTable(db.Model):
 
     def create_user(self):
         db.session.add(self)
-        db.session.commit()
-
-    def update(self, data):
-        for key, value in data.items():
-            setattr(self, key, value)
         db.session.commit()
 
     def serialize(self):
@@ -73,10 +60,6 @@ class UserTable(db.Model):
     @classmethod
     def get_all_users(cls):
         return UserTable.query.all()
-
-    @classmethod
-    def get_by_id(cls, user_id):
-        return cls.query.get(user_id)
 
     def __repr__(self):
         return '<id {} : {} {}'.format(self.id, self.first_name, self.last_name)
